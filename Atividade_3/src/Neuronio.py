@@ -25,16 +25,16 @@ class Neuronio:
         return self.activate(out, gradient=False)
     
     def backpropagation(self, output_error_scalar, lr):
+        # Calcula o gradiente da função de ativação caso tenha (backward) (dE/Dactfn)
         output_error_scalar = self.activate(output_error_scalar, gradient=True)
 
-        # Para propagação do erro
-        inputs_error = np.array([output_error_scalar * w for w in self.bias_pesos[1:]])
-        # Para atualização dos pesos com base no erro de sua saída
+        # Atualização dos pesos com base no erro e dados de entrada (dE/dX)
         weights_error = np.dot(self.tmp_inputs.T, output_error_scalar)
-
         self.bias_pesos[1:] -= lr * weights_error
         self.bias_pesos[0] -= lr * output_error_scalar
 
+        # Gradiente dos pesos para propagação do erros nos layers (backward) (dE/dw)
+        inputs_error = np.array([output_error_scalar * w for w in self.bias_pesos[1:]])
         return inputs_error
 
 

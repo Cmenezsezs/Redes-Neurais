@@ -8,6 +8,7 @@ tam_base_train = 500
 tam_base_val = 50
 tam_base_test = 100
 
+# Problema: média de dois valores entre -0.5 e 0.5
 X_train = np.array([np.random.rand(n_features_base) - 0.5 for _ in range(tam_base_train)])
 y_train = np.array([np.mean(x) for x in X_train])
 
@@ -17,14 +18,13 @@ y_val = np.array([np.mean(x) for x in X_val])
 X_test = np.array([np.random.rand(n_features_base) - 0.5 for _ in range(tam_base_test)])
 y_test = np.array([np.mean(x) for x in X_test])
 
-epochs = 10
-lr = 0.001
+epochs = 5
+lr = 0.1
 
-num_inputs = len(X_train[0])
 hiddens = [50, 100, 50]
 num_outputs = 1
 act_fns = ["none", "none", "none", "none"]
-mlp = MLP(num_inputs, hiddens, num_outputs, act_fns)
+mlp = MLP(n_features_base, hiddens, num_outputs, act_fns)
 mlp.mostrar_rede()
 
 for epo in range(epochs):
@@ -50,3 +50,8 @@ for epo in range(epochs):
         vet_loss_test.append(mse(gt, pred, gradient=False))
     print(f"Epo: {epo}, Loss Test:  {mean(vet_loss_test)}")
     print("------------------")
+
+
+print(f"\nExemplos de predições da base de teste:")
+for i in range(10):
+    print(f"input: {X_test[i]}, pred: {mlp.forward(X_test[i]):.3}, real: {y_test[i]:.3}")

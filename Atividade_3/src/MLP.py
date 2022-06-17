@@ -41,8 +41,7 @@ if __name__ == '__main__':
     num_inputs = 2
     hiddens = [50, 100, 50]
     num_outputs = 1
-    # act_fns = ["relu", "relu", "sigmoid"]
-    act_fns = ["none", "none", "none"]
+    act_fns = ["none", "none", "none", "none"] # "relu", "tanh", "sigmoid", "none"
     mlp = MLP(num_inputs, hiddens, num_outputs, act_fns)
     mlp.mostrar_rede()
 
