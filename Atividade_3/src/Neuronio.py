@@ -33,8 +33,17 @@ class Neuronio:
         self.bias_pesos[1:] -= lr * weights_error
         self.bias_pesos[0] -= lr * output_error_scalar
 
+        # TODO: pensar melhor nesse limitador
+        # self.bias_pesos[1:][self.bias_pesos[1:] > 1] = np.random.rand(1)[0]
+        # self.bias_pesos[1:][self.bias_pesos[1:] < -1] = -np.random.rand(1)[0]
+        # self.bias_pesos[0] = np.random.rand(1)[0] if self.bias_pesos[0] > 1 else self.bias_pesos[0]
+        # self.bias_pesos[0] = -np.random.rand(1)[0] if self.bias_pesos[0] < -1 else self.bias_pesos[0]
+
         # Gradiente dos pesos para propagação do erros nos layers (backward) (dE/dw)
         inputs_error = np.array([output_error_scalar * w for w in self.bias_pesos[1:]])
+
+        # TODO: melhorar a penalização com base no tamanho dos pesos (regularizar)
+        # return inputs_error * (1 + sum(self.bias_pesos)) * 0.000001
         return inputs_error
 
 

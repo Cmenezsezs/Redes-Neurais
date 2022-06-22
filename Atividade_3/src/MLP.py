@@ -15,7 +15,7 @@ class MLP:
 
         self.layers = [Layer(num_inputs, hiddens[0], act_fns[0])]
         for i in range(len(hiddens) - 1):
-            self.layers.append(Layer(hiddens[i], hiddens[i+1], act_fns[i]))
+            self.layers.append(Layer(hiddens[i], hiddens[i+1], act_fns[i+1]))
         self.layers.append(Layer(hiddens[-1], num_outputs, act_fns[-1]))
 
     def forward(self, inputs, training=False):
