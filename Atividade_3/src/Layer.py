@@ -13,7 +13,7 @@ class Layer:
         return np.array(list(map(lambda n: n.forward(inputs, training), self.neuronios)))
 
     def backpropagation(self, output_error, lr):
-        # Vetor com derivadas para propagar o erro para is próximos layers
+        # Vetor com derivadas para propagar o erro para os próximos layers
         inputs_error = [0.0] * self.tam_input # pra cada neurônio
         for i, n in enumerate(self.neuronios):
             inputs_error += n.backpropagation(output_error[i], lr)

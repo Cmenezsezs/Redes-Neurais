@@ -5,7 +5,7 @@ from Utils import *
 from DataLoader import DataLoader
 from sklearn.preprocessing import StandardScaler
 
-seed = 1
+seed = 10
 np.random.seed(seed)
 
 n_features = 5
@@ -31,10 +31,10 @@ tam_base_train = y_train.shape[0]
 tam_base_val = y_val.shape[0]
 tam_base_test = y_test.shape[0]
 
-epochs = 3
-lr = 0.0001
+epochs = 5
+lr = 0.003
 
-hiddens = [32, 16, 8]
+hiddens = [16*8, 8*8, 4*8]
 act_fns = ["none", "none", "none", "none"]
 mlp = MLP(n_features, hiddens, n_output, act_fns)
 mlp.mostrar_rede()
@@ -47,27 +47,31 @@ for epo in range(epochs):
         mlp.backpropagation([mse(gt, pred, gradient=True)], lr)
         vet_loss_train.append(mse(gt, pred, gradient=False))
         if i%100 == 0:
-            print(f"[{i}] Epo: {epo}, Loss Train: {mean(vet_loss_train)}", end="\r")
-    print(f"Epo: {epo}, Loss Train: {mean(vet_loss_train)}")
+            print(f"[{i}] Epo: {epo+1}, Loss Train: {mean(vet_loss_train):.6f}", end="\r")
+    print(f"Epo: {epo+1}, Loss Train: {mean(vet_loss_train):.6f}, lr: {lr:.5f}")
 
-    # vet_loss_val = []
-    # for i in range(tam_base_val):
-    #     inputs, gt = X_val[i], y_val[i]
-    #     pred = mlp.forward(inputs, training=False)
-    #     vet_loss_val.append(mse(gt, pred, gradient=False))
-    # print(f"Epo: {epo}, Loss Val:   {mean(vet_loss_val)}")
-
-    vet_loss_test = []
-    for i in range(tam_base_test):
-        inputs, gt = X_test[i], y_test[i]
+    vet_loss_val = []
+    for i in range(tam_base_val):
+        inputs, gt = X_val[i], y_val[i]
         pred = mlp.forward(inputs, training=False)
-        vet_loss_test.append(mse(gt, pred, gradient=False))
+        vet_loss_val.append(mse(gt, pred, gradient=False))
         if i%100 == 0:
-            print(f"[{i}] Epo: {epo}, Loss Test:  {mean(vet_loss_test)}", end="\r")
-    print(f"Epo: {epo}, Loss Test:  {mean(vet_loss_test)}")
+            print(f"[{i}] Epo: {epo+1}, Loss Test:  {mean(vet_loss_val):.6f}", end="\r")
+    print(f"Epo: {epo+1}, Loss Val:   {mean(vet_loss_val):.6f}, lr: {lr:.5f}")
     print("------------------")
 
+    lr *= 0.7
+
+vet_loss_test = []
+for i in range(tam_base_test):
+    inputs, gt = X_test[i], y_test[i]
+    pred = mlp.forward(inputs, training=False)
+    vet_loss_test.append(mse(gt, pred, gradient=False))
+    if i%100 == 0:
+        print(f"[{i}] Epo: {epochs}, Loss Test:  {mean(vet_loss_test)}", end="\r")
+print(f"Epo: {epochs}, Loss Test:  {mean(vet_loss_test)}")
+print("------------------")
 
 print(f"\nExemplos de predições da base de test:")
 for i in range(10):
-    print(f"input: {X_test[i]}, pred: {mlp.forward(X_test[i]):.3}, real: {y_test[i]:.3}")
+    print(f"input: {X_test[i]}, pred: {mlp.forward(X_test[i], training=False):.10}, real: {y_test[i]:.3}")

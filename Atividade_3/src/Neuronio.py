@@ -8,17 +8,17 @@ class Neuronio:
         # self.bias_pesos = (np.random.rand(tam_input + 1) - 0.5) / 10
         self.bias_pesos = np.random.normal(loc=0.0, 
                                            scale=(np.sqrt(6) / \
-                                               (np.sqrt(tam_input)))/100,
+                                               (np.sqrt(tam_input)))/5,
                                            size=tam_input+1)
         self.tam_input = tam_input
-        self.act_fn = act_fn
+        self.act_fn = act_fn.lower()
         self.tmp_inputs = None
 
     def activate(self, x, gradient=False):
-        if self.act_fn == "sigmoid":    return sigmoid(x, gradient)
-        elif self.act_fn == "relu":     return relu(x, gradient)
-        elif self.act_fn == "tanh":     return tanh(x, gradient)
-        elif self.act_fn.lower() != "none":
+        if self.act_fn   == "sigmoid": return sigmoid(x, gradient)
+        elif self.act_fn == "relu":    return relu(x, gradient)
+        elif self.act_fn == "tanh":    return tanh(x, gradient)
+        elif self.act_fn != "none":
             print(f"sct_fn {self.act_fn} not implemented"); exit()
         return x
 
@@ -38,17 +38,18 @@ class Neuronio:
         self.bias_pesos[1:] -= lr * weights_error
         self.bias_pesos[0] -= lr * output_error_scalar
 
-        # TODO: pensar melhor nesse limitador
-        # self.bias_pesos[1:][self.bias_pesos[1:] > 1] = np.random.rand(1)[0]
-        # self.bias_pesos[1:][self.bias_pesos[1:] < -1] = -np.random.rand(1)[0]
-        # self.bias_pesos[0] = np.random.rand(1)[0] if self.bias_pesos[0] > 1 else self.bias_pesos[0]
-        # self.bias_pesos[0] = -np.random.rand(1)[0] if self.bias_pesos[0] < -1 else self.bias_pesos[0]
+        # TODO: só pra testar
+        self.bias_pesos[self.bias_pesos > 1] = 1
+        self.bias_pesos[self.bias_pesos < -1] = -1
 
         # Gradiente dos pesos para propagação do erros nos layers (backward) (dE/dw)
+        # print(output_error_scalar, self.bias_pesos)
         inputs_error = np.array([output_error_scalar * w for w in self.bias_pesos[1:]])
 
-        # TODO: melhorar a penalização com base no tamanho dos pesos (regularizar)
-        # return inputs_error * (1 + sum(self.bias_pesos)) * 0.000001
+        # TODO: só pra testar
+        # inputs_error[inputs_error > 1] = 1
+        # inputs_error[inputs_error < -1] = -1
+
         return inputs_error
 
 
