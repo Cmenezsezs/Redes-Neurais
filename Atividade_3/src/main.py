@@ -1,32 +1,41 @@
+import os
 import numpy as np
 from MLP import MLP
 from Utils import *
 from DataLoader import DataLoader
+from sklearn.preprocessing import StandardScaler
+
 seed = 1
 np.random.seed(seed)
 
 n_features = 5
 n_output = 1
-dir_base = "/home/baltz/Documentos/Mestrado/2022-1/Redes Neurais/git_repo/Redes_Neurais_Mestrado_2022-1/Atividade_3/base_dados/"
+dir_base = os.path.join(os.getcwd(), 'base_dados')
 
-dt = DataLoader(n_features, n_output, dir_base)
-X_train, y_train, X_test, y_test = dt.get_dataset("OAKLAND1")
+dt = DataLoader(n_features, n_output, dir_base, seed=seed)
+X_train, y_train, X_val, y_val, X_test, y_test = dt.get_dataset(
+        "OAKLAND1", size_train=0.8, size_val=0.5, seed=seed)
 
-# X_train = X_train[:100]
-# y_train = y_train[:100]
-# X_test = X_test[:100]
-# y_test = y_test[:100]
+# Normalização da base de dados N~(média=0, desv_pad=1)
+escala_regr = StandardScaler() 
+X_train = escala_regr.fit_transform(X_train)
+X_val = escala_regr.transform(X_val)
+X_test = escala_regr.transform(X_test)
 
-tam_base_train = len(X_train)
-# tam_base_val = 50
-tam_base_test = len(X_test)
+escala_targ = StandardScaler() 
+y_train = np.array([aux[0] for aux in escala_targ.fit_transform(y_train)])
+y_val = np.array([aux[0] for aux in escala_targ.transform(y_val)])
+y_test = np.array([aux[0] for aux in escala_targ.transform(y_test)])
+
+tam_base_train = y_train.shape[0]
+tam_base_val = y_val.shape[0]
+tam_base_test = y_test.shape[0]
 
 epochs = 3
 lr = 0.0001
 
-# hiddens = [int(50/2), int(100/2), int(50/2)]
 hiddens = [32, 16, 8]
-act_fns = ["sigmoid", "sigmoid", "none", "relu"]
+act_fns = ["none", "none", "none", "none"]
 mlp = MLP(n_features, hiddens, n_output, act_fns)
 mlp.mostrar_rede()
 

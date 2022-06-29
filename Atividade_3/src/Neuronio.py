@@ -1,10 +1,15 @@
 import numpy as np
 from Utils import *
+from random import gauss
 
 class Neuronio:
 
     def __init__(self, tam_input, act_fn = None):
-        self.bias_pesos = (np.random.rand(tam_input + 1) - 0.5) / 10
+        # self.bias_pesos = (np.random.rand(tam_input + 1) - 0.5) / 10
+        self.bias_pesos = np.random.normal(loc=0.0, 
+                                           scale=(np.sqrt(6) / \
+                                               (np.sqrt(tam_input)))/100,
+                                           size=tam_input+1)
         self.tam_input = tam_input
         self.act_fn = act_fn
         self.tmp_inputs = None
