@@ -1,0 +1,80 @@
+count    91.000000
+mean     17.914743
+std      10.141797
+Name: GUNNING1, dtype: float64
+count    91.000000
+mean     16.705045
+std      12.318262
+Name: GUNNING1, dtype: float64
+count    91.000000
+mean     23.309892
+std      14.453103
+Name: GUNNING1, dtype: float64
+count    92.000000
+mean     17.917911
+std      11.111191
+Name: GUNNING1, dtype: float64
+count     91.000000
+mean      36.272032
+std       26.275203
+Name: MERCER01, dtype: float64
+count     91.000000
+mean      40.184557
+std       34.358492
+Name: MERCER01, dtype: float64
+count     91.000000
+mean      60.425080
+std       35.810912
+Name: MERCER01, dtype: float64
+count     92.000000
+mean      34.175661
+std       23.427034
+Name: MERCER01, dtype: float64
+count    91.000000
+mean     19.554206
+std      13.308336
+Name: OAKLAND1, dtype: float64
+count    91.000000
+mean     18.836890
+std      18.453912
+Name: OAKLAND1, dtype: float64
+count    91.000000
+mean     27.467806
+std      17.399307
+Name: OAKLAND1, dtype: float64
+count    92.000000
+mean     18.444025
+std      13.243917
+Name: OAKLAND1, dtype: float64
+count     91.000000
+mean      56.678851
+std       42.302386
+Name: MUSSELR1, dtype: float64
+count     91.000000
+mean      70.413725
+std       55.659952
+Name: MUSSELR1, dtype: float64
+count     91.000000
+mean      85.189247
+std       52.939598
+Name: MUSSELR1, dtype: float64
+count     92.000000
+mean      53.351698
+std       41.738555
+Name: MUSSELR1, dtype: float64
+count     91.000000
+mean      38.438472
+std       23.936469
+Name: WATERLWF, dtype: float64
+count     91.000000
+mean      41.870831
+std       32.779484
+Name: WATERLWF, dtype: float64
+count     91.000000
+mean      61.764293
+std       34.990261
+Name: WATERLWF, dtype: float64
+count    92.000000
+mean     40.322759
+std      24.431670
+Name: WATERLWF, dtype: float64

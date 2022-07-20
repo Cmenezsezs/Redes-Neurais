@@ -1,0 +1,81 @@
+PS C:\Users\othon\OneDrive\Documentos\Mestrado\Deep Learning\DeepLearning-2022-1> python .\main.py
+count    4379.000000
+mean       17.888673
+std        14.292772
+Name: GUNNING1, dtype: float64
+count    4379.000000
+mean       16.776940
+std        14.781909
+Name: GUNNING1, dtype: float64
+count    4379.000000
+mean       23.130465
+std        16.886161
+Name: GUNNING1, dtype: float64
+count    4382.000000
+mean       18.043985
+std        15.082759
+Name: GUNNING1, dtype: float64
+count    4379.000000
+mean       36.225909
+std        34.399810
+Name: MERCER01, dtype: float64
+count    4379.000000
+mean       40.077308
+std        39.797234
+Name: MERCER01, dtype: float64
+count    4379.000000
+mean       60.496066
+std        41.391116
+Name: MERCER01, dtype: float64
+count    4382.000000
+mean       34.175860
+std        32.067211
+Name: MERCER01, dtype: float64
+count    4379.000000
+mean       19.519651
+std        18.239386
+Name: OAKLAND1, dtype: float64
+count    4379.000000
+mean       18.790553
+std        21.045394
+Name: OAKLAND1, dtype: float64
+count    4379.000000
+mean       27.453831
+std        21.001610
+Name: OAKLAND1, dtype: float64
+count    4382.000000
+mean       18.514327
+std        18.920380
+Name: OAKLAND1, dtype: float64
+count    4379.000000
+mean       56.929870
+std        53.652211
+Name: MUSSELR1, dtype: float64
+count    4379.000000
+mean       69.909409
+std        64.179198
+Name: MUSSELR1, dtype: float64
+count    4379.000000
+mean       85.768896
+std        61.855681
+Name: MUSSELR1, dtype: float64
+count    4382.000000
+mean       52.873053
+std        51.798872
+Name: MUSSELR1, dtype: float64
+count    4379.000000
+mean       38.380793
+std        34.482679
+Name: WATERLWF, dtype: float64
+count    4379.000000
+mean       41.907278
+std        38.894751
+Name: WATERLWF, dtype: float64
+count    4379.000000
+mean       61.903985
+std        41.334510
+Name: WATERLWF, dtype: float64
+count    4382.000000
+mean       40.155725
+std        33.862485
+Name: WATERLWF, dtype: float64
